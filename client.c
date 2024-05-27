@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hassaleh <hassaleh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/27 19:15:48 by hassaleh          #+#    #+#             */
+/*   Updated: 2024/05/27 20:40:01 by hassaleh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 void	char_convert(int pid, char *str)
@@ -16,7 +28,7 @@ void	char_convert(int pid, char *str)
 			else
 				kill(pid, SIGUSR2);
 			b--;
-			usleep(1000);
+			usleep(150);
 		}
 		i++;
 	}
@@ -29,6 +41,6 @@ int	main(int ac, char *av[])
 		write(1, "ERROR: Wrong Arguments Amount\n", 30);
 		return (0);
 	}
-	char_convert(atoi(av[1]), av[2]);
+	char_convert(ft_atoi(av[1]), av[2]);
 	return (0);
 }
