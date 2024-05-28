@@ -6,7 +6,7 @@
 /*   By: hassaleh <hassaleh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:52:30 by hassaleh          #+#    #+#             */
-/*   Updated: 2024/05/27 19:59:23 by hassaleh         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:12:39 by hassaleh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,33 @@ int	ft_atoi(const char *str)
 	while ((str[i] == 32) || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	return (result_check(result, (char *)str + i));
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n == -2147483648)
+	{
+		ft_putchar_fd ('-', fd);
+		ft_putchar_fd ('2', fd);
+		n = 147483648;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd ('-', fd);
+		n = n * -1;
+	}
+	if (n < 10)
+	{
+		n = n + 48;
+		write (fd, &n, 1);
+		return ;
+	}
+	else
+		ft_putnbr_fd (n / 10, fd);
+	ft_putnbr_fd (n % 10, fd);
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write (fd, &c, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: hassaleh <hassaleh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:16:02 by hassaleh          #+#    #+#             */
-/*   Updated: 2024/05/27 19:58:52 by hassaleh         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:11:59 by hassaleh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ void	reciever(int sig_num)
 
 int	main(void)
 {
+	int	pid;
+
 	g_track = 8;
-	printf("%d\n", getpid());
+	pid = getpid();
+	ft_putnbr_fd(pid, 1);
 	signal(SIGUSR1, reciever);
 	signal(SIGUSR2, reciever);
 	while (1)

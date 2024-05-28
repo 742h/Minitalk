@@ -1,24 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hassaleh <hassaleh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 19:15:54 by hassaleh          #+#    #+#             */
-/*   Updated: 2024/05/28 18:08:14 by hassaleh         ###   ########.fr       */
+/*   Created: 2024/05/28 16:55:20 by hassaleh          #+#    #+#             */
+/*   Updated: 2024/05/28 18:12:26 by hassaleh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "minitalk.h"
 
-# include <unistd.h>
-# include <signal.h>
-# include <stdlib.h>
+int	g_track;
 
-int		ft_atoi(const char *str);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putchar_fd(char c, int fd);
+void	reciever(int sig_num)
+{
+	static char	c;
 
-#endif
+	g_track--;
+	if (sig_num == SIGUSR1)
+		c = 1 << g_track | c;
+	if (g_track == 0)
+	{
+		write (1, &c, 1);
+		g_track = 8;
+		c = '\0';
+	}
+}
+
+int	main(void)
+{
+	int	pid;
+
+	g_track = 8;
+	pid = getpid();
+	ft_putnbr_fd(pid, 1);
+	signal(SIGUSR1, reciever);
+	signal(SIGUSR2, reciever);
+	while (1)
+		pause ();
+}
