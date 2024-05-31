@@ -6,7 +6,7 @@
 /*   By: hassaleh <hassaleh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:55:31 by hassaleh          #+#    #+#             */
-/*   Updated: 2024/05/28 18:10:49 by hassaleh         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:24:48 by hassaleh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	char_convert(int pid, char *str)
 	}
 	if (n == -1)
 	{
-		write (1, "PID error", 10);
+		write (1, "PID error\n", 11);
 		exit(1);
 	}
 }

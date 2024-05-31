@@ -6,11 +6,12 @@
 /*   By: hassaleh <hassaleh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:15:48 by hassaleh          #+#    #+#             */
-/*   Updated: 2024/05/28 20:21:01 by hassaleh         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:16:38 by hassaleh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+#include <stdio.h>
 
 void	char_convert(int pid, char *str)
 {
@@ -35,7 +36,7 @@ void	char_convert(int pid, char *str)
 	}
 	if (n == -1)
 	{
-		write (1, "PID error", 10);
+		write (1, "PID error\n", 11);
 		exit(1);
 	}
 }
