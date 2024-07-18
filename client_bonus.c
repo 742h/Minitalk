@@ -6,11 +6,17 @@
 /*   By: hassaleh <hassaleh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:55:31 by hassaleh          #+#    #+#             */
-/*   Updated: 2024/05/29 12:24:48 by hassaleh         ###   ########.fr       */
+/*   Updated: 2024/07/16 22:44:11 by hassaleh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+void	verifier(int signal)
+{
+	(void)signal;
+	write(1, "\e[0;32m OK\n", 12);
+}
 
 void	char_convert(int pid, char *str)
 {
@@ -18,6 +24,7 @@ void	char_convert(int pid, char *str)
 	int	b;
 	int	n;
 
+	signal(SIGUSR1, verifier);
 	i = 0;
 	while (str[i])
 	{
